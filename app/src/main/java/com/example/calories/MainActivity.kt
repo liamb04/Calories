@@ -82,6 +82,7 @@ fun Heading(title:String){
 @Composable
 fun CalorieScreen(){
     var weightInput by remember { mutableStateOf( "") }
+    var weight = weightInput.toIntOrNull() ?:0
     var male by remember { mutableStateOf( true) }
     var intensity by remember { mutableStateOf(1.3f) }
     var result by remember { mutableStateOf(0) }
@@ -97,6 +98,7 @@ fun CalorieScreen(){
         GenderChoices(male, setGenderMale = {male=it})
         IntensityList(onClick = {intensity=it})
         Text (text =result.toString(), color=MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.Bold)
+        Calculation(male = male, weight = weight, intensity = intensity, setResult = {result=it})
     }
 }
 @Composable
